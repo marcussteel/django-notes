@@ -1,0 +1,5 @@
+py -m venv env
+.\env\Scripts\activate
+pip install django
+pip install python-decouple
+django-admin startproject main .
