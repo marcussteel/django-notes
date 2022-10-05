@@ -21,10 +21,12 @@ shutil.copyfile(env_path,destination_env)
 my_command_file = open("install_commands.txt", "r")
 install_list = my_command_file.read().split('\n')
 for command in install_list:
+
     print(command)
+
     s = subprocess.getstatusoutput(f'{command}')
     if s[0] == 0:
         print(s[1])
-        time.sleep(15)
+
     else:
-        print('Custom Error {}'.format(s[1]))
+        print('Custom Error -------------------{}'.format(s[1]))

@@ -2,4 +2,7 @@ py -m venv env
 .\env\Scripts\activate
 pip install django
 pip install python-decouple
-django-admin startproject main .
+python -m pip install pillow
+pip freeze > requirements.txt 
+python -m django startproject main .
+python manage.py startapp modelsApp
