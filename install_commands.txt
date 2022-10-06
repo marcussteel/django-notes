@@ -3,6 +3,7 @@ py -m venv env
 pip install django
 pip install python-decouple
 python -m pip install pillow
+pip install django-crispy-forms
 pip freeze > requirements.txt 
 python -m django startproject main .
 python manage.py startapp modelsApp

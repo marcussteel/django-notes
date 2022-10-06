@@ -1,7 +1,15 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<p><h2>This is page for Forms</h2></p>
-{% block content %}
-    {{form}}
-{% endblock content %}
+
+{% block forforms %}
+    This is for forms now you see formindex.html not text in base html that is between block forforms
+    <form action="" method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+    
+{{form.as_p}}
+        <button type="submit" value="OK">Submit</button>
+    
+    </form>
+
+{% endblock forforms %}
     

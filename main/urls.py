@@ -25,6 +25,7 @@ urlpatterns = [
     path('study-views/', include("study_views.urls")),
     path('study-forms/', include("study_forms.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) : Geliştirme aşamasında benim media file larımı gösterdiğim yerden kullan, canlıya çıktığımda başka ayar yapacağım
