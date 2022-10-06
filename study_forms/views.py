@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from .forms import StudentForm,Student
+from django.contrib import messages
 
 # Create your views here.
 
@@ -24,6 +25,7 @@ def forms_home(request):
             # student = Student(**student_data)
             # student.save()
             form.save()
+            messages.success(request, "Student added successful")
             return redirect('study_forms:student')
 
     context = {

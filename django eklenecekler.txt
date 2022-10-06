@@ -78,3 +78,18 @@ static klasör oluştur
 -------------------------
 img ekleme
 <img src="{%static 'app/example.jpg %} " alt="example" width="300">
+
+
+----------------
+crispy forms 
+pip install django-bootstrap5
+her ikisini de kurar 
+
+INSTALLED_APPS = (
+    ...
+    'crispy_forms',
+)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
