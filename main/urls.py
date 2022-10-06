@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('study-model/', include("study_model.urls")),
     path('study-views/', include("study_views.urls")),
+    path('study-forms/', include("study_forms.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -11,6 +11,10 @@ class Student(models.Model):
     register_date = models.DateField(auto_now_add=True) #burası ilk kayıt alıyor bırakıyor sonra değişmiyor
     last_update = models.DateTimeField(auto_now=True) # autonow yeniliyor kendini
     is_active = models.BooleanField(default=True)
+    profile_pic = models.ImageField(upload_to="profile_pics", blank=True) # media rootunun altına profile_pics diye klasör oluşturup oraya atacak resimleri
+    
+    def __str__(self):
+        return f"{self.last_name} {self.first_name}"
 
 
 # bu metodu normalde views de orm metodları çalıştırılır.  
