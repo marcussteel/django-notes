@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block student_update %}
+    
+
+    
+<form action="" method="POST">
+    
+        <p>Are You Sure delete {{student.first_name}}</p>
+        {% csrf_token %}
+        <input class="btn btn-light" type="submit" value="Yes">
+    </form>
+    <a href="{% url 'cbv_model:cbv' %}">
+        <button class="btn btn-light">No</button>
+    </a> 
+{% endblock student_update %}

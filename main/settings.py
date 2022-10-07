@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'study_forms',
     'crispy_forms',
     'study_crud',
+    'study_cbv',
 
 ]
 

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block students %}
+   
+    <h3> This is for student now you see study_crud.html  .not text in base html that is between block forforms</h3>
+ {% for student in student_list %}
+ 
+ <p>
+               {% if student.profile_pic %}
+
+            <img src="{{student.profile_pic.url}}" style="width: 200px; float: left; margin-right: 10px;"/>
+
+            {% endif %}
+    id:{{student.id}}, 
+    
+        <a class='text-decoration-none ' href=" {%url 'cbv_model:cbvdetail' student.id %}">{{student.number}}</a>
+        {{student.first_name}} {{student.last_name}}   
+
+ 
+ </p><hr> <br>
+ 
+ {% endfor %}
+
+    <button type="submit" class='btn btn-dark'>  <a class='text-decoration-none ' href=" {%url 'cbv_model:cbvstudent_add'%}">Clik here to add</a> </button>
+
+{% endblock students %}
+    

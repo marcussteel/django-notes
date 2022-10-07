@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block student_update %}
+
+    <h2>Update Student</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}  
+        {% load crispy_forms_tags %}                 
+        {{form | crispy}}						   
+        <input class="btn btn-primary mt-3" type="submit" value="update">
+    </form>
+
+    <button type="submit" class='btn btn-dark me-3 mt-5'>  <a class='text-decoration-none text-light ' href=" {%url 'cbv_model:cbvstudent_add'%}">Go  To Forms Page</a> </button>
+    <button type="submit" class='btn btn-danger mt-5'>  <a class='text-decoration-none text-light' href=" {% url 'cbv_model:delete' student.id %}">Delete</a> </button>
+
+{% endblock student_update %}
