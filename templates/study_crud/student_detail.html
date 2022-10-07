@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block student_update %}
 
@@ -9,9 +9,13 @@
     <h5>Last Name :{{student.last_name}} </h5>
     <h5>Number :{{student.number}} </h5>
 
-
+    
+        {% if student.profile_pic %}
+     <img src="{{student.profile_pic.url}}" class="img-responsive" style="width: 200px; float: left; margin-right: 10px;"/>
+{% endif %}
 
     <button type="submit" class='btn btn-dark me-2'>  <a class='text-decoration-none ' href=" {%url 'crud_model:update' student.id%}">Update</a> </button>
-    <button type="submit" class='btn btn-danger'>  <a class='text-decoration-none ' href=" {% url 'crud_model:delete' student.id %}">Delete</a> </button>
+    <button type="submit" class='btn btn-danger me-2'>  <a class='text-decoration-none ' href=" {% url 'crud_model:delete' student.id %}">Delete</a> </button>
+    <button type="submit" class='btn btn-primary'>  <a class='text-decoration-none text-light' href=" {% url 'crud_model:crud'%}">List Page</a> </button>
 
 {% endblock student_update %}

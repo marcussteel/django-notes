@@ -6,8 +6,19 @@
     <h3> This is for student now you see study_crud.html  .not text in base html that is between block forforms</h3>
  {% for student in student_list %}
  
- <p>id:{{student.id}},{{student.number}} {{student.first_name}} {{student.last_name}}   </p>
+ <p>
+               {% if student.profile_pic %}
+
+            <img src="{{student.profile_pic.url}}" style="width: 200px; float: left; margin-right: 10px;"/>
+
+            {% endif %}
+    id:{{student.id}}, 
+    
+        <a class='text-decoration-none ' href=" {%url 'crud_model:detail' student.id %}">{{student.number}}</a>
+        {{student.first_name}} {{student.last_name}}   
+
  
+ </p><hr> <br>
  
  {% endfor %}
 

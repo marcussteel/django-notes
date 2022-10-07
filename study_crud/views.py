@@ -22,6 +22,7 @@ def study_crud_view(request):
 def student_list_read(request):
     student_list = Student.objects.all()
     # student_list = get_object_or_404(Student)
+    
     context = {
         'student_list' : student_list
     }
@@ -37,7 +38,7 @@ def student_add(request):
     form = StudentForm()  # boş form render edeceğiz
     if request.method == 'POST':
         print(request.POST)
-        form = StudentForm(request.POST)
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Student added successful")
@@ -60,9 +61,10 @@ def student_update(request, id):
     student = Student.objects.get(id=id)
     form = StudentForm(instance=student)
     if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
+        form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             form.save()
+            messages.success(request, "Student updated successful")
             return redirect("crud_model:crud")
     context = {
         'form': form,
@@ -100,7 +102,10 @@ def student_delete(request, id):
 
 def student_detail(request, id):
     student = Student.objects.get(id=id)
+    # print(student.profile_pic)
+    print("Student içindekiler ",bool(student.profile_pic) )
     context = {
-        'student': student
+        'student': student,
+        
     }
     return render(request, 'study_crud/student_detail.html', context)

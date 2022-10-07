@@ -1,3 +1,4 @@
+from enum import unique
 from tabnanny import verbose
 from django.db import models
 
@@ -7,7 +8,7 @@ from django.db import models
 class Student(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    number = models.IntegerField()
+    number = models.IntegerField(unique=True)
     # birisi frontend biri backend ile ilgili
     description = models.TextField(null=True, blank=True)
     # burası ilk kayıt alıyor bırakıyor sonra değişmiyor
