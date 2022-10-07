@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block student_update %}
+
+    <h2>Student Detail Page</h2>
+    <h3>This is {{student.first_name}}'s detail Page </h3>
+    <h5>Name :{{student.first_name}} </h5>
+    <h5>Last Name :{{student.last_name}} </h5>
+    <h5>Number :{{student.number}} </h5>
+
+
+
+    <button type="submit" class='btn btn-dark me-2'>  <a class='text-decoration-none ' href=" {%url 'crud_model:update' student.id%}">Update</a> </button>
+    <button type="submit" class='btn btn-danger'>  <a class='text-decoration-none ' href=" {% url 'crud_model:delete' student.id %}">Delete</a> </button>
+
+{% endblock student_update %}

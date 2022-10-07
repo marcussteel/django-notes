@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block forforms %}
+    This is for forms now you see formindex.html not text in base html that is between block forforms
+    <form action="" method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+          {% load crispy_forms_tags %}
+    {{ form |crispy}}
+        <button type="submit" value="OK">Submit</button>
+
+    </form>
+
+{% endblock forforms %}
