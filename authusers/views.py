@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 
@@ -10,8 +11,21 @@ from django.contrib import messages
 class HomeView(TemplateView):
     template_name = 'authusers/index.html'
 
+@login_required
+def special(request):
+    return render(request, 'authusers/special.html')
+    
 class SpecialView(TemplateView):
     template_name = 'authusers/special.html'
+
+
+
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# /* /                                    /*/
+# /* /         REGISTER                  / */
+# /* /                                    /*/
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+
 
 def register(request):
     form = UserCreationForm(request.POST or None) # if request method== post ise deyip yapıyorduk, şimdi tek satırla yaptık
@@ -35,8 +49,11 @@ def register(request):
     return render(request, 'registration/register.html',context)
 
 
-
-
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# /* /                                    /*/
+# /* /         PASSWORD CHANGE            /*/
+# /* /                                    /*/
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 
 def password_change(request):
     if request.method == 'POST':
@@ -55,7 +72,13 @@ def password_change(request):
     return render(request, "registration/password_change.html", context)
 
 
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# /* /                                    /*/
+# /* /             LOGOUT                 /*/
+# /* /                                    /*/
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 def user_logout(request):
-    messages.success(request, "You Logout!")
+    messages.success(request, "You Logged out!")
     logout(request)
     return redirect('authusers:home')
+

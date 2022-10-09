@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 
-      {% block content %}
-{% if user.is_authenticated %}
 
-<h2> Hello {{user.username}}</h2>
-    
-          This is Auth Index.html  and you logged in
-          <button class='btn btn-primary'><a class='text-decoration-none' href="{%url 'logout' %}">Logout</a></button>
+{% block content %}
 
+      {% if user.is_authenticated %}
 
-{% else %}
+            <h2> Hello {{user.username}}</h2>
 
-<p><h3>Please Login to see this page</h3></p> 
-<button class='btn btn-primary'><a class='text-decoration-none text-light' href="{%url 'login' %}">Login</a></button>
-{% endif %}
+            This is Auth Index.html  and you logged in
+            <button class='btn btn-primary'><a class='text-decoration-none' href="{%url 'authusers:logout' %}">Logout</a></button>
+
+      {% else %}
+
+            <p><h3>Please Login to see this page</h3></p> 
+            <button class='btn btn-primary'><a class='text-decoration-none text-light' href="{%url 'login' %}">Login</a></button>
+      {% endif %}
       
 
 

@@ -4,12 +4,14 @@
 
 {% block content %}
 
-    <form action="" method='POST'>
-{% csrf_token %}
-{% load crispy_forms_tags %}   
-{{form| crispy}}
-<button class='btn btn-primary' type="submit">Login</button>
-<input type="submit" value="Login">
+    <h3>Please Login</h3>
 
+    <form action="{%url 'login'%}" method='POST'>
+        {% csrf_token %}
+        {% load crispy_forms_tags %}   
+        {{form| crispy}}
+        <button class='btn btn-primary' type="submit">Login</button>
+        <input type="submit" value="Login">
     </form>
+
 {% endblock content %}
