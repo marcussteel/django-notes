@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'authusers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'study_crud',
     'study_cbv',
-    'authusers',
+
 
 ]
 
@@ -135,6 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LOGIN_REDIRECT_URL = "authusers:home"
+LOGOUT_REDIRECT_URL = '/'
+
 
 #settings e eklenecekler
 # Static files (CSS, JavaScript, Images)
@@ -148,3 +152,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # in templates  array : 
 # 'DIRS': [BASE_DIR, "templates"],
 # 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #dummy olarak mail gönderdiğimizi farz etmek için  ve usersin emaili olmalı
