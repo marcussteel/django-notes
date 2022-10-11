@@ -8,6 +8,12 @@
             <h2> Hello {{user.username}}</h2>
 
             This is Auth Index.html  and you logged in
+            
+             {% if form_user.profile_pic %}
+
+            <img src="{{form_user.profile_pic.url}}" style="width: 200px; float: left; margin-right: 10px;"/>
+
+            {% endif %}
             <button class='btn btn-primary'><a class='text-decoration-none' href="{%url 'authusers:logout' %}">Logout</a></button>
 
       {% else %}

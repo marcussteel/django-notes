@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c1ia3eav7pn=xfo-+1ki7xaqd7&o$_4bjvcxz4=y#0lxcr8^49'
+# from decouple import config
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,6 +46,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'study_crud',
     'study_cbv',
+    'adminpanelproduct',
+    'ckeditor',
+
 
 
 ]
@@ -154,3 +159,13 @@ LOGOUT_REDIRECT_URL = '/'
 # 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #dummy olarak mail gönderdiğimizi farz etmek için  ve usersin emaili olmalı
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 700,
+        'width': 1000
+    }
+}
+#* Note: ilgili template dosyasında: {{description | safe}}

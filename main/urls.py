@@ -29,6 +29,7 @@ urlpatterns = [
     path('study-forms/', include("study_forms.urls")),
     path('study-crud/', include("study_crud.urls")),
     path('study-cbv/', include("study_cbv.urls")),
+    # path('adminpanelproduct/', include("adminpanelproduct.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

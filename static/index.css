@@ -1,3 +1,9 @@
-body{
-    background: linear-gradient(to top left, #5e0674, #c0ceee);
+body {
+    background: rgb(143, 189, 190);
 }
+
+.navbardiv {
+    background: crimson;
+}
+
+
