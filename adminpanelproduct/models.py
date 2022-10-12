@@ -39,25 +39,19 @@ class Product(models.Model):
         count = self.reviews.count()
         return count
 
+#from django.utils.safestring import mark_safe     # eğer img varsa o image ile ilgili önce string ifadeye çeviriyor
+    def bring_image(self): #image eklemek için ister buraya ister admiins py a eklenebilir
+        if self.product_img:
+            return mark_safe(f"<img src={self.product_img.url} width=50 height=50></img>")
+        return mark_safe(f"<h3>{self.name} has not image </h3>")
+
+
     # def bring_image(self):
     #     if self.product_img:
     #         return mark_safe(f"<img src={self.product_img.url} width=400 height=400></img>")
     #     return mark_safe(f"<h3>{self.name} has not image </h3>")
 
 
-class Review(models.Model):
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='reviews')
-    review = models.TextField()
-    is_released = models.BooleanField(default=True)
-    created_date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = 'Review'
-        verbose_name_plural = 'Reviews'
-
-    def __str__(self):
-        return f"{self.product.name} - {self.review}"
 
 
 # /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
@@ -70,3 +64,23 @@ class Review(models.Model):
 #* 'ckeditor',      >> > add installed_apps
 #    from ckeditor.fields import RichTextField
     # description = models.TextField(blank=True) >>>> description = RichTextField()
+
+
+    # ilişkisel bir veri tabanında birden fazla model i nasıl gösterebiliriz
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    review = models.TextField()
+    is_released = models.BooleanField(default=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'
+
+    def __str__(self):
+        return f"{self.product.name} - {self.review}"
+
+
+
+
+

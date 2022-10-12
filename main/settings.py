@@ -68,6 +68,14 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Admin template default directory : env/lib/django/contrib/admin/templates/admin
+        # Liste Sayfası -> admin/change_list.html
+        # Ekleme ve Güncelleme Sayfaları -> admin/change_form.html
+        # Silme İşlemi İçin Onay Sayfası -> admin/delete_confirmation.html
+        # Modelin Geçmişi -> admin/object_history.html
+        # admin/<extend_edilecek_sablon_adi > .html >> >>>> > admin site ana sayfa
+        # admin/<app_adi > / < extend_edilecek_sablon_adi > .html >> >>>>>> > applere özel
+        # admin/<app_adi > / < model_adi > / < extend_edilecek_sablon_adi > .html >> >>>>>>>> modellere özel
         'DIRS': [BASE_DIR, "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -124,7 +132,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
+import os
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -132,7 +140,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
