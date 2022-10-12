@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'study_model',
     'study_views',
     'study_forms',
@@ -48,6 +49,9 @@ INSTALLED_APPS = [
     'study_cbv',
     'adminpanelproduct',
     'ckeditor',
+    'import_export',
+    'serializers'
+    
 
 
 

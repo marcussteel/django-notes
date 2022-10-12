@@ -1,3 +1,7 @@
+from .resources import ReviewResource
+from import_export.admin import ImportExportModelAdmin
+from .models import Review
+from import_export import resources
 from django.utils.safestring import mark_safe
 from django.contrib import admin
 from ckeditor.fields import RichTextField
@@ -34,7 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
     #adminde producta tıklayınca neleri görmek istiyyorsak onu seçiyoruz
     list_editable = ("is_in_stock", ) 
     #eğer field üzerinde link varsa onu kabul etmez örn:name   
-    list_display_links = ("create_date", ) #can't add items in list_editable to here 
+    list_display_links = ("create_date",'name' ) #can't add items in list_editable to here 
     list_filter = ("is_in_stock", "create_date")
     ordering = ("name",)
     search_fields = ("name",)
@@ -110,15 +114,32 @@ class ProductAdmin(admin.ModelAdmin):
 # /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
 
 #from .models import Product,Review
-class ReviewAdmin(admin.ModelAdmin):
+
+
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# /* import export csv xlm vs             /*/
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# https://django-import-export.readthedocs.io/en/latest/
+# pip install django-import-export
+# INSTALLED_APPS = (... 'import_export', )
+# create resources.py
+# class ReviewResource(resources.ModelResource):
+#     class Meta:
+#         model = Review  # default all fields
+#         # fields = ("is_released", "product")
+# from import_export.admin import ImportExportModelAdmin
+# from products.resources import ReviewResource
+# class ReviewAdmin(ImportExportModelAdmin):  # burada parantez içini değiştir ve alttaki satırı ekle
+#     resource_class = ReviewResource
+
+class ReviewAdmin(ImportExportModelAdmin):
     list_display = ('__str__', 'created_date', 'is_released') #göstermek istediğim fieldları gösteriyordu __str__ Review da productname-self review olarak belirtilmiş
     list_per_page = 50
     raw_id_fields = ('product',)
+    resource_class = ReviewResource
 
 
 admin.site.register(Review, ReviewAdmin)
-
-
 
 
 
@@ -135,3 +156,17 @@ admin.site.site_header = "Marcus Apps Admin Portal" #sırası ile
 admin.site.index_title = "Welcome to Marcus Apps Admin Portal"
 
 
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# /* List-Filter Dropdown                 /*/
+# /*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+# https://github.com/mrts/django-admin-list-filter-dropdown
+# pip install django-admin-list-filter-dropdown
+# INSTALLED_APPS = (... 'django_admin_listfilter_dropdown', ...)
+# admin.py
+#from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
+# class ReviewAdmin(admin.ModelAdmin):
+#     list_display = ('__str__', 'created_date', 'is_released')
+#     list_per_page = 50
+#     list_filter = (
+#         ('product', RelatedDropdownFilter),
+#     )
